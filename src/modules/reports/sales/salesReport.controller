@@ -1,0 +1,15 @@
+const service = require("./salesReport.service");
+
+const getSalesReport = async (req, res) => {
+    const data = await service.getSalesReport(req.query);
+
+    res.status(200).json({
+        success: true,
+        count: data.length,
+        data,
+    });
+};
+
+module.exports = {
+    getSalesReport,
+};
