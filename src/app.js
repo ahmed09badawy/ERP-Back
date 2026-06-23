@@ -7,6 +7,8 @@ if (process.env.VERCEL !== '1') {
   }
 }
 require("express-async-errors");
+const mongoose = require("mongoose");
+const connectDB = require("./config/db");
 const express = require("express");
 const cors = require("cors");
 const helmet = require("helmet");
@@ -98,6 +100,23 @@ app.use(corsConfig);
 app.use(helmet());
 app.use(morgan("dev"));
 app.use(express.json());
+
+// Database connection middleware for Vercel/serverless environments
+app.use(async (req, res, next) => {
+    try {
+        if (mongoose.connection.readyState !== 1) {
+            await connectDB();
+        }
+        next();
+    } catch (err) {
+        console.error("Database connection failed:", err.message);
+        return res.status(500).json({
+            success: false,
+            message: "Database connection failed",
+            error: err.message
+        });
+    }
+});
 
 
 app.get("/", getHomeMessage);
