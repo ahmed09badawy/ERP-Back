@@ -1,5 +1,11 @@
 const dns = require('dns');
-dns.setServers(['8.8.8.8', '1.1.1.1']);
+if (process.env.VERCEL !== '1') {
+  try {
+    dns.setServers(['8.8.8.8', '1.1.1.1']);
+  } catch (err) {
+    console.warn("Failed to set DNS servers locally:", err.message);
+  }
+}
 require("express-async-errors");
 const express = require("express");
 const cors = require("cors");
