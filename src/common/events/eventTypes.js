@@ -4,6 +4,7 @@ module.exports = {
     SALES_INVOICE_POSTED: "sales.invoice.posted",
     SALES_INVOICE_UPDATED: "sales.invoice.updated",
     SALES_INVOICE_DELETED: "sales.invoice.deleted",
+    
     SALES_RETURN_POSTED: "sales.return.posted",
     GOODS_RECEIPT_POSTED: "purchase.goods_receipt.posted",
     GOODS_RECEIPT_DELETED: "purchase.goods_receipt.deleted",
