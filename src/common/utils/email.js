@@ -1,6 +1,12 @@
 const { Resend } = require("resend");
 
 const sendEmail = async ({ to, subject, text, html }) => {
+    if (!process.env.RESEND_API_KEY) {
+        throw new Error(
+            "RESEND_API_KEY environment variable is not set. " +
+            "Add it to your .env file or container environment."
+        );
+    }
     const resend = new Resend(process.env.RESEND_API_KEY);
     try {
         const { data, error } = await resend.emails.send({
