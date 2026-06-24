@@ -1,4 +1,9 @@
 {
+  "name": "erp-back",
+  "version": "1.0.0",
+  "engines": {
+    "node": ">=18.x"
+  },
   "dependencies": {
     "bcryptjs": "^3.0.3",
     "cors": "^2.8.6",
