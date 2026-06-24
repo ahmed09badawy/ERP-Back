@@ -1,3 +1,5 @@
+require("dotenv").config(); // MUST be first — loads env vars before any other module reads them
+
 const dns = require('dns');
 if (process.env.VERCEL !== '1') {
   try {
@@ -13,8 +15,7 @@ const express = require("express");
 const cors = require("cors");
 const helmet = require("helmet");
 const morgan = require("morgan");
-const dotenv = require("dotenv")
-dotenv.config()
+// dotenv already configured at top of file
 const corsConfig = require("./config/cors");
 const { registerIntegrationHandlers } = require("./common/integrations/registerHandlers");
 
